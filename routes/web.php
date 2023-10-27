@@ -21,7 +21,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('admin.file.index');
+    return view('admin');
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/file', [FileController::class, 'index'])->middleware(['auth'])->name('file.index');
