@@ -56,6 +56,7 @@
                                             <i class="fas fa-pencil-alt">
                                             </i>
                                         </a>
+
                                         <form class="d-inline" action="{{ route('user.destroy', $user->id) }}">
                                             @method('DELETE')
                                             @csrf

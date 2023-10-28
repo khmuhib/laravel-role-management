@@ -545,10 +545,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon far fa-circle text-info"></i>
-                        <p>Informational</p>
-                    </a>
+                    <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        <button type="submit" class="nav-link">
+                            <i class="nav-icon far fa-circle text-info"></i>
+                            <p>Logout</p>
+                        </button>
+                    </form>
                 </li>
             </ul>
         </nav>

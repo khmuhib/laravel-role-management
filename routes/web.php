@@ -24,6 +24,8 @@ Route::get('/dashboard', function () {
     return view('admin');
 })->middleware(['auth'])->name('dashboard');
 
+Route::post("/logout",[LogoutController::class,"store"])->name("logout");
+
 Route::get('/file', [FileController::class, 'index'])->middleware(['auth'])->name('file.index');
 
 Route::get('/role', [RoleController::class, 'index'])->middleware(['auth'])->name('role.index');
