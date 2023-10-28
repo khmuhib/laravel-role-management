@@ -28,6 +28,12 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/plugins/summernote/summernote-bs4.css') }}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- Toastr css -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset('admin/assets/plugins/select2/css/select2.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('admin/assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
 
     @yield('css')
 </head>
@@ -122,7 +128,24 @@
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('admin/assets/dist/js/demo.js') }}"></script>
 
+    <!-- Toastr js -->
+    {{-- <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script> --}}
+    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+
+    <script src="{{ asset('admin/assets/plugins/select2/js/select2.full.min.js') }}"></script>
+
+    <script>
+        //Initialize Select2 Elements
+        $('.select2').select2()
+
+        //Initialize Select2 Elements
+        $('.select2bs4').select2({
+            theme: 'bootstrap4'
+        })
+    </script>
+
     @yield('js')
+    {!! Toastr::message() !!}
 </body>
 
 </html>

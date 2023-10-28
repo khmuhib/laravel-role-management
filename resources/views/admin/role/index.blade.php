@@ -1,184 +1,81 @@
 @extends('layouts.index')
-@section('title', 'File Manager')
+@section('title', 'User')
 @section('css')
     {{-- <link rel="stylesheet" href="{{ asset('vendor/file-manager/css/file-manager.css') }}"> --}}
 @endsection
-@section('page_title', 'Role Management')
+@section('page_title', 'Role List')
 @section('content')
-    <!-- Small boxes (Stat box) -->
-    <div class="row py-2">
-        {{-- <div class="col-md-12">
-            <h1>Role</h1>
-        </div> --}}
-
-        <div class="col-md-12">
-            <div class="form-group">
-                <label for="exampleInputEmail1">Role Name</label>
-                <input type="text" class="form-control" id="" placeholder="Enter Role Name">
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="card card-info">
+    <div class="row">
+        <div class="col-12">
+            {!! Toastr::message() !!}
+            <a type="submit" class="btn btn-primary mb-2" href="{{ route('permission') }}"">Create New Role</a>
+            <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">User</h3>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <form role="form">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <!-- checkbox -->
-                                <div class="form-group">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox">
-                                        <label class="form-check-label" id="checkAll">All Check</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox">
-                                        <label class="form-check-label">Checkbox checked</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox">
-                                        <label class="form-check-label">Checkbox disabled</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <!-- checkbox -->
-                                <div class="form-group">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox">
-                                        <label class="form-check-label">Checkbox</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox">
-                                        <label class="form-check-label">Checkbox checked</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox">
-                                        <label class="form-check-label">Checkbox disabled</label>
-                                    </div>
-                                </div>
+                    <h3 class="card-title">All Role <span class="bg-primary">{{ $roles->count() }}</span></h3>
+                    <div class="card-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-default">
+                                    <i class="fas fa-search"></i>
+                                </button>
                             </div>
                         </div>
-                    </form>
-                </div>
-                <!-- /.card-body -->
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card card-info">
-                <div class="card-header">
-                    <h3 class="card-title">File</h3>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <form role="form">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <!-- checkbox -->
-                                <div class="form-group">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox">
-                                        <label class="form-check-label" id="checkAll">All Check</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox">
-                                        <label class="form-check-label">Checkbox checked</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox">
-                                        <label class="form-check-label">Checkbox disabled</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <!-- checkbox -->
-                                <div class="form-group">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox">
-                                        <label class="form-check-label">Checkbox</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox">
-                                        <label class="form-check-label">Checkbox checked</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox">
-                                        <label class="form-check-label">Checkbox disabled</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <!-- /.card-body -->
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card card-info">
-                <div class="card-header">
-                    <h3 class="card-title">Property</h3>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <form role="form">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <!-- checkbox -->
-                                <div class="form-group">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox">
-                                        <label class="form-check-label" id="checkAll">All Check</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox">
-                                        <label class="form-check-label">Checkbox checked</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox">
-                                        <label class="form-check-label">Checkbox disabled</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <!-- checkbox -->
-                                <div class="form-group">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox">
-                                        <label class="form-check-label">Checkbox</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox">
-                                        <label class="form-check-label">Checkbox checked</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox">
-                                        <label class="form-check-label">Checkbox disabled</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <!-- /.card-body -->
-            </div>
-        </div>
+                    </div>
 
-        <div class="col-md-12">
-            <div class="d-flex justify-content-end">
-                <button type="submit" class="btn btn-secondary">Cancle</button>
-                <button type="submit" class="btn btn-primary ml-2">Submit</button>
+                </div>
+
+                <div class="card-body table-responsive p-0" style="height: 800px;">
+                    @if ($roles->count())
+                        <table class="table table-head-fixed text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>SL.</th>
+                                    <th>Name</th>
+                                    <th>Permission</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach ($roles as $role)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $role->name }}</td>
+                                        <td>
+                                            @foreach ($role->permissions as $permission)
+                                                <span class="bg-success">{{ $permission->name }}</span>
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-info btn-sm" href="{{ route('permission', $role->id) }}">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a class="btn btn-info btn-sm" href="{{ route('role.edit', $role->id) }}">
+                                                <i class="fas fa-pencil-alt"></i>
+                                            </a>
+                                            <form class="d-inline" action="{{ route('role.destroy', $role->id) }}">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button class="btn btn-danger btn-sm">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                            </tbody>
+                        </table>
+                    @else
+                        <h3>Role Not Found</h3>
+                    @endif
+
+
+                </div>
+
             </div>
+
         </div>
     </div>
-@endsection
-@section('js')
-    {{-- <script src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script> --}}
-    <script>
-        $("#checkAll").click(function() {
-            $(".check").prop('checked', $(this).prop('checked'));
-        });
-    </script>
 @endsection

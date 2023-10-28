@@ -1,69 +1,69 @@
 @extends('layouts.index')
-@section('title', 'File Manager')
+@section('title', 'User')
+@section('css')
+    {{-- <link rel="stylesheet" href="{{ asset('vendor/file-manager/css/file-manager.css') }}"> --}}
+@endsection
+@section('page_title', 'User List')
 @section('content')
-    <div class="">
-        <div class="container mx-auto px-4 sm:px-8">
-            <div class="py-8">
-                <div>
-                    <h2 class="text-2xl font-semibold leading-tight">Users</h2>
-                </div>
-                <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-                    <div class="inline-block min-w-full shadow-md rounded-lg overflow-hidden">
-                        <table class="min-w-full leading-normal">
-                            <thead>
-                                <tr>
-                                    <th
-                                        class="px-5 py-3 border border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                                        ID
-                                    </th>
-                                    <th
-                                        class="px-5 py-3 border border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                                        Name
-                                    </th>
-                                    <th
-                                        class="px-5 py-3 border border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                                        Role
-                                    </th>
-                                    <th
-                                        class="px-5 py-3 border border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                                        Status
-                                    </th>
-                                    <th class="px-5 py-3 border border-b-2 border-gray-200 bg-gray-100">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($users as $user)
-                                    <tr>
-                                        <td class="px-5 border border-b border-gray-200 bg-white text-sm">
-                                            {{ $user->id }}
-                                        </td>
-                                        <td class="px-5 border border-b border-gray-200 bg-white text-sm">
-                                            {{ $user->name }}
-                                        </td>
-                                        <td class="px-5 border border-b border-gray-200 bg-white text-sm">
-                                            {{ $user->is_role == 1 ? 'Super Admin' : ($user->is_role == 2 ? 'Admin' : 'User') }}
-                                        </td>
-                                        <td class="px-5 border border-b border-gray-200 bg-white text-sm">
-                                            {{ $user->status }}
-                                        </td>
-                                        <td class="px-5 border border-b border-gray-200 bg-white text-sm">
-                                            <a href="{{-- {{ route('users.edit', $user->id) }} --}}"
-                                                class="text-indigo-600 hover:text-indigo-900">Edit</a>
-
-                                        </td>
-                                    </tr>
-                                @endforeach
-
-                            </tbody>
-                        </table>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <a type="submit" class="btn btn-primary ml-2" href="{{ route('user.create') }}"">Create User</a>
+                    {{-- <h3 class="card-title">All User</h3> --}}
+                    <div class="card-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-default">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
+
+                <div class="card-body table-responsive p-0" style="height: 300px;">
+                    <table class="table table-head-fixed text-nowrap">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Role</th>
+                                <th>Created at</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($users as $user)
+                                <tr>
+                                    <td>{{ $user->id }}</td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>11-7-2014</td>
+                                    <td><span class="tag tag-success">Approved</span></td>
+                                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                                    <td>
+                                        <a class="btn btn-info btn-sm" href="">
+                                            <i class="fas fa-pencil-alt">
+                                            </i>
+                                            Edit
+                                        </a>
+                                        <a class="btn btn-danger btn-sm" href="#">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                            Delete
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
+
         </div>
     </div>
-
-
-    </div>
-
-
 @endsection

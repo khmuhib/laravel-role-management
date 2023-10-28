@@ -12,6 +12,9 @@
             <a href="{{ route('file.index') }}" class="nav-link">File</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
+            <a href="{{ route('user.index') }}" class="nav-link">User</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
             <a href="{{ route('role.index') }}" class="nav-link">Role</a>
         </li>
     </ul>
