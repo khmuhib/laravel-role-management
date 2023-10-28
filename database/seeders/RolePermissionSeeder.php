@@ -20,28 +20,28 @@ class RolePermissionSeeder extends Seeder
         $role = Role::create(['name' => 'super admin']);
         $permissions = [
             [
-                'name' => 'user list',
+                'name' => 'user-list',
             ],
             [
-                'name' => 'user create',
+                'name' => 'user-create',
             ],
             [
-                'name' => 'user edit',
+                'name' => 'user-edit',
             ],
             [
-                'name' => 'user delete',
+                'name' => 'user-delete',
             ],
             [
-                'name' => 'role list',
+                'name' => 'role-list',
             ],
             [
-                'name' => 'role create',
+                'name' => 'role-create',
             ],
             [
-                'name' => 'role edit',
+                'name' => 'role-edit',
             ],
             [
-                'name' => 'role delete',
+                'name' => 'role-delete',
             ]
         ];
         foreach ($permissions as $item) {

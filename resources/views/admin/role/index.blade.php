@@ -48,19 +48,25 @@
                                             @endforeach
                                         </td>
                                         <td>
-                                            <a class="btn btn-info btn-sm" href="{{ route('permission', $role->id) }}">
-                                                <i class="fas fa-eye"></i>
-                                            </a>
-                                            <a class="btn btn-info btn-sm" href="{{ route('role.edit', $role->id) }}">
-                                                <i class="fas fa-pencil-alt"></i>
-                                            </a>
-                                            <form class="d-inline" action="{{ route('role.destroy', $role->id) }}">
-                                                @method('DELETE')
-                                                @csrf
-                                                <button class="btn btn-danger btn-sm">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </form>
+                                            @can('role-list')
+                                                <a class="btn btn-info btn-sm" href="{{ route('permission', $role->id) }}">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                            @endcan
+                                            @can('role-edit')
+                                                <a class="btn btn-info btn-sm" href="{{ route('role.edit', $role->id) }}">
+                                                    <i class="fas fa-pencil-alt"></i>
+                                                </a>
+                                            @endcan
+                                            @can('role-delete')
+                                                <form class="d-inline" action="{{ route('role.destroy', $role->id) }}">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <button class="btn btn-danger btn-sm">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @endforeach

@@ -52,18 +52,23 @@
                                             class="tag tag-success">{{ $user->status == 1 ? 'Active' : 'Inactive' }}</span>
                                     </td>
                                     <td>
-                                        <a class="btn btn-info btn-sm" href="{{ route('user.edit', $user->id) }}">
-                                            <i class="fas fa-pencil-alt">
-                                            </i>
-                                        </a>
+                                        @can('user-edit')
+                                            <a class="btn btn-info btn-sm" href="{{ route('user.edit', $user->id) }}">
+                                                <i class="fas fa-pencil-alt">
+                                                </i>
+                                            </a>
+                                        @endcan
 
-                                        <form class="d-inline" action="{{ route('user.destroy', $user->id) }}">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button class="btn btn-danger btn-sm">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </form>
+                                        @can('user-delete')
+                                            <form class="d-inline" action="{{ route('user.destroy', $user->id) }}">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button class="btn btn-danger btn-sm">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        @endcan
+
                                     </td>
                                 </tr>
                             @endforeach
