@@ -17,15 +17,14 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('mobile_no')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('is_role', ['1', '2', '3'])->default(2)->comment('1 = Super Admin, 2 = Admin, 3 = User');
-            $table->enum('status', ['0', '1'])->default(1)->comment('0 = Inactive, 1 = Active');
             $table->rememberToken();
+            $table->foreignId('current_team_id')->nullable();
+            $table->string('profile_photo_path', 2048)->nullable();
+            $table->boolean('status')->default(true);
+            $table->boolean('is_admin')->default(true);
             $table->timestamps();
-            $table->string('created_by')->nullable();
-            $table->string('updated_by')->nullable();
         });
     }
 

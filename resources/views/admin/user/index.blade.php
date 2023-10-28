@@ -31,7 +31,6 @@
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Role</th>
-                                <th>Created at</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -41,20 +40,29 @@
                                 <tr>
                                     <td>{{ $user->id }}</td>
                                     <td>{{ $user->name }}</td>
-                                    <td>11-7-2014</td>
-                                    <td><span class="tag tag-success">Approved</span></td>
-                                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
                                     <td>
-                                        <a class="btn btn-info btn-sm" href="">
+                                        @foreach ($user->roles as $role)
+                                            {{ $role->name }}
+                                            @if (!$loop->last)
+                                                ,
+                                            @endif
+                                        @endforeach
+                                    </td>
+                                    <td><span
+                                            class="tag tag-success">{{ $user->status == 1 ? 'Active' : 'Inactive' }}</span>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-info btn-sm" href="{{ route('user.edit', $user->id) }}">
                                             <i class="fas fa-pencil-alt">
                                             </i>
-                                            Edit
                                         </a>
-                                        <a class="btn btn-danger btn-sm" href="#">
-                                            <i class="fas fa-trash">
-                                            </i>
-                                            Delete
-                                        </a>
+                                        <form class="d-inline" action="{{ route('user.destroy', $user->id) }}">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
