@@ -30,4 +30,17 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    // Social Login
+    'google' => [
+        'client_id' => env('GOOGLE_CLINET_ID'),
+        'client_secret' => env('GOOGLE_SECRET_ID'),
+        'redirect' => 'http://127.0.0.1:8000/auth/google/callback',
+    ],
+
+    'facebook' => [
+        'client_id' => env('FACEBOOK_APP_ID'),
+        'client_secret' => env('FACEBOOK_APP_SECRET'),
+        'redirect' => 'http://localhost/auth/facebook/callback',
+    ],
+
 ];

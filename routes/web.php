@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin\FileController;
+use App\Http\Controllers\Admin\LogoutController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Auth\FacebookAuthController;
+use App\Http\Controllers\Auth\GoogleAuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,7 +27,17 @@ Route::get('/dashboard', function () {
     return view('admin');
 })->middleware(['auth'])->name('dashboard');
 
-Route::post("/logout",[LogoutController::class,"store"])->name("logout");
+Route::get("/logout", [LogoutController::class, 'store'])->name('logout');
+
+// Social Login
+Route::get('auth/google', [GoogleAuthController::class, 'redirect'])->name('auth.google');
+Route::get('auth/google/callback', [GoogleAuthController::class, 'callbackGoogle']);
+
+Route::get('auth/facebook', [FacebookAuthController::class, 'redirect'])->name('auth.facebook');
+Route::get('auth/facebook/callback', [FacebookAuthController::class, 'callbackFacebook']);
+
+
+
 
 Route::get('/file', [FileController::class, 'index'])->middleware(['auth'])->name('file.index');
 
