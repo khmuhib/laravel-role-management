@@ -23,11 +23,11 @@ class FacebookAuthController extends Controller
             $facebook_user = Socialite::driver('facebook')->user();
 
 
-            dd($facebook_user);
+            // dd($facebook_user);
 
             $user = User::where('facebook_id', $facebook_user->getId())->first();
 
-            // dd($user);
+            // dd("usrte");
 
             if (!$user) {
                 $new_user = User::create([
